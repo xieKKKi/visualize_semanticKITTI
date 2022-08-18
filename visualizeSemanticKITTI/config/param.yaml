@@ -1,0 +1,25 @@
+# project name
+PROJECT_NAME: "semantic_remove"
+
+semantic_remove:
+  pathKITTI: "/media/xjp/T7/KITTI/sequences/"
+  targetSequence: "09"
+
+  vfov: 50
+  hfov: 360
+
+  num_omp_cores: 16
+
+  # @ Range image resolution
+  # the below is actually magnifier ratio (i.e., 5 means x5 resolution, the x1 means 1 deg x 1 deg per pixel)
+  # - recommend to use the first removing resolution's magnifier ratio should meet the seonsor vertical fov / number of rays
+  #     - e.g., HDL 64E of KITTI dataset -> appx 25 deg / 64 ray ~ 0.4 deg per pixel -> the magnifier ratio = 1/0.4 = 2.5
+  #     - e.g., Ouster OS1-64 of MulRan dataset -> appx 45 deg / 64 ray ~ 0.7 deg per pixel -> the magnifier ratio = 1/0.7 = 1.4
+  # - recommend to use the first reverting resolution's magnifier ratio should lied in 1.0 to 1.5
+  remove_resolution_list: [ 2.5, 2.0, 1.5 ] # for HDL 64E of KITTI dataset  [ 2.5, 2.0, 1.5 ]
+  # remove_resolution_list: [1.4, 1.1] # for Ouster OS1-64 of MulRan dataset
+  revert_resolution_list: [ 1.0, 0.9, 0.8, 0.7 ] # TODO
+
+  # @ For visualization of range images (rviz -d removert_visualization.rviz)
+  rimg_color_min: 0.0 # meter
+  rimg_color_max: 20.0 # meter

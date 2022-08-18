@@ -1,0 +1,12 @@
+<launch>
+    <arg name="project" default="visualizeSemanticKITTI"/>
+
+    <!--- Load Params-->
+    <rosparam file="$(find visualizeSemanticKITTI)/config/param.yaml" command="load"/>
+
+    <!--- visualize-->
+    <node pkg="$(arg project)" type="visualize" name="visualize" output="screen" respawn="true"/>
+
+    <!--- Run Rviz-->
+    <node pkg="rviz" type="rviz" name="$(arg project)_rviz" args="-d $(find visualizeSemanticKITTI)/config/visualize.rviz" />
+</launch>
